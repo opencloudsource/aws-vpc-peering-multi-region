@@ -16,7 +16,7 @@ data "aws_vpc" "requester" {
 }
 
 data "aws_subnets" "requester" {
-  count = length(var.requester_subnet_ids) == 0 ? 1 : 0
+  count    = length(var.requester_subnet_ids) == 0 ? 1 : 0
   provider = aws.requester
   filter {
     name   = "vpc-id"
@@ -62,7 +62,7 @@ resource "aws_route" "requester" {
   route_table_id            = local.requester_aws_route_table_ids[count.index]
   destination_cidr_block    = data.aws_vpc.accepter.cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection.requester.id
-  depends_on                = [
+  depends_on = [
     data.aws_route_table.requester,
     aws_vpc_peering_connection.requester,
     aws_vpc_peering_connection_accepter.accepter
@@ -87,7 +87,7 @@ data "aws_vpc" "accepter" {
 }
 
 data "aws_subnets" "accepter" {
-  count = length(var.accepter_subnet_ids) == 0 ? 1 : 0
+  count    = length(var.accepter_subnet_ids) == 0 ? 1 : 0
   provider = aws.accepter
   filter {
     name   = "vpc-id"
@@ -112,7 +112,7 @@ resource "aws_route" "accepter" {
   route_table_id            = local.accepter_aws_route_table_ids[count.index]
   destination_cidr_block    = data.aws_vpc.requester.cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection.requester.id
-  depends_on                = [
+  depends_on = [
     data.aws_route_table.accepter,
     aws_vpc_peering_connection_accepter.accepter,
     aws_vpc_peering_connection.requester,

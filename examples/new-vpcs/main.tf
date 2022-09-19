@@ -53,17 +53,17 @@ module "vpc_two" {
 }
 
 module "vpc_peering" {
-  source    = "../.."
+  source = "../.."
   providers = {
     aws.requester = aws.oregon
     aws.accepter  = aws.singapore
   }
 
-  name             = "one-to-two"
-  requester_vpc_id = module.vpc_one.vpc_id
-  requester_subnet_ids = concat(module.vpc_one.private_subnets, module.vpc_one.public_subnets)
+  name                      = "one-to-two"
+  requester_vpc_id          = module.vpc_one.vpc_id
+  requester_subnet_ids      = concat(module.vpc_one.private_subnets, module.vpc_one.public_subnets)
   requester_route_table_ids = concat(module.vpc_one.private_route_table_ids, module.vpc_one.public_route_table_ids)
-  accepter_vpc_id  = module.vpc_two.vpc_id
-  accepter_subnet_ids = concat(module.vpc_two.private_subnets, module.vpc_two.public_subnets)
-  accepter_route_table_ids = concat(module.vpc_two.private_route_table_ids, module.vpc_two.public_route_table_ids)
+  accepter_vpc_id           = module.vpc_two.vpc_id
+  accepter_subnet_ids       = concat(module.vpc_two.private_subnets, module.vpc_two.public_subnets)
+  accepter_route_table_ids  = concat(module.vpc_two.private_route_table_ids, module.vpc_two.public_route_table_ids)
 }
