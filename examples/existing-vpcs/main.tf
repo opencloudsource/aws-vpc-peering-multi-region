@@ -23,13 +23,13 @@ provider "aws" {
 }
 
 module "vpc_peering" {
-  source    = "../.."
+  source = "../.."
   providers = {
     aws.requester = aws.oregon
     aws.accepter  = aws.singapore
   }
 
-  name = "oregon-to-singapore"
+  name             = "oregon-to-singapore"
   requester_vpc_id = "vpc-xxxxxxx"
   accepter_vpc_id  = "vpc-xxxxxxx"
 }
