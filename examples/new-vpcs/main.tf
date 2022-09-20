@@ -54,7 +54,7 @@ module "vpc_two" {
 
 module "vpc-peering-multi-region" {
   source  = "registry.terraform.io/opencloudsource/vpc-peering-multi-region/aws"
-  version = "1.0.0"
+  version = "1.0.1"
   providers = {
     aws.requester = aws.oregon
     aws.accepter  = aws.singapore
