@@ -24,13 +24,13 @@ provider "aws" {
 
 module "vpc-peering-multi-region" {
   source  = "registry.terraform.io/opencloudsource/vpc-peering-multi-region/aws"
-  version = "1.0.1"
+  version = "1.0.3"
   providers = {
     aws.requester = aws.oregon
     aws.accepter  = aws.singapore
   }
 
-  name             = "oregon-to-singapore"
-  requester_vpc_id = "vpc-xxxxxxx"
-  accepter_vpc_id  = "vpc-xxxxxxx"
+  name             = var.name
+  requester_vpc_id = var.requester_vpc_id
+  accepter_vpc_id  = var.accepter_vpc_id
 }

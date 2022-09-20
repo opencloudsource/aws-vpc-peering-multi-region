@@ -4,29 +4,32 @@ Terraform module which creates VPC peering connections in the same account betwe
 
 ## Usage
 
-It is recommended to use a specific version when using this. One has not been included in the example as it may change 
+It is recommended to use a specific version when using this. One has not been included in the example as it may change
 in the future.
 
 ```hcl
 module "vpc_peering" {
-  source = "opencloudsource/aws-vpc-peering-multi-region/aws"
+  source    = "registry.terraform.io/opencloudsource/vpc-peering-multi-region/aws"
+  version   = "X.X.X"
   providers = {
     aws.requester = aws.oregon
     aws.accepter  = aws.singapore
   }
 
-  name = "oregon-to-singapore"
+  name             = "oregon-to-singapore"
   requester_vpc_id = "vpc-xxxxxxx"
   accepter_vpc_id  = "vpc-xxxxxxx"
 }
 ```
+
 <!-- BEGIN_TF_DOCS -->
+
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.27 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | > = 0.13.1 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | > = 3.27 |
 
 ## Providers
 

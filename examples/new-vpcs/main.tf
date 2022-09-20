@@ -54,13 +54,13 @@ module "vpc_two" {
 
 module "vpc-peering-multi-region" {
   source  = "registry.terraform.io/opencloudsource/vpc-peering-multi-region/aws"
-  version = "1.0.1"
+  version = "1.0.3"
   providers = {
     aws.requester = aws.oregon
     aws.accepter  = aws.singapore
   }
 
-  name                      = "one-to-two"
+  name                      = var.name
   requester_vpc_id          = module.vpc_one.vpc_id
   requester_subnet_ids      = concat(module.vpc_one.private_subnets, module.vpc_one.public_subnets)
   requester_route_table_ids = concat(module.vpc_one.private_route_table_ids, module.vpc_one.public_route_table_ids)
