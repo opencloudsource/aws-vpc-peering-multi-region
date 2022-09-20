@@ -4,6 +4,9 @@ Terraform module which creates VPC peering connections in the same account betwe
 
 ## Usage
 
+It is recommended to use a specific version when using this. One has not been included in the example as it may change 
+in the future.
+
 ```hcl
 module "vpc_peering" {
   source = "opencloudsource/aws-vpc-peering-multi-region/aws"
